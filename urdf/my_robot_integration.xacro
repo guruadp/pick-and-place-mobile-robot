@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name ="manipulator" xmlns:xacro="http://wiki.ros.org/xacro">
+
+	<xacro:include filename="$(find manipulator)/urdf/manipulator.urdf"/>
+	<xacro:include filename="$(find manipulator)/urdf/camera.xacro"/>
+
+</robot>	
+
+
