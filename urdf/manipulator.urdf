@@ -4,21 +4,30 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="manipulator">
+  <link name="dummy_link">
+  <pose>"0 0 0 0 0 0"</pose>
+  </link>
+  <joint name="dummy_joint" type="fixed">
+    <parent link="dummy_link" />
+    <child link="base_link" />
+    <origin xyz = "0 0 0" rpy= "0 0 0" />
+    <axis xyz = "0 0 0" />
+  </joint>
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="-2.22044604925031E-16 -8.88178419700125E-16 0.0221577186195165"
+        xyz="-0.0211776996618438 -1.22728266438443E-08 0.220694894832878"
         rpy="0 0 0" />
       <mass
-        value="0.343652649470198" />
+        value="31.440945977861" />
       <inertia
-        ixx="0.000931840317732514"
-        ixy="-3.87534116980948E-19"
-        ixz="2.41502446850779E-18"
-        iyy="0.000931840317732514"
-        iyz="8.13532754823054E-18"
-        izz="0.00144684523805803" />
+        ixx="0.303296482329575"
+        ixy="-1.67101174915287E-06"
+        ixz="0.0507896153372789"
+        iyy="2.55073722062815"
+        iyz="2.13037549899861E-08"
+        izz="2.73494594645884" />
     </inertial>
     <visual>
       <origin
@@ -45,20 +54,444 @@
     </collision>
   </link>
   <link
+    name="rear_shaft">
+    <inertial>
+      <origin
+        xyz="-1.11022302462516E-16 0 0.254"
+        rpy="0 0 0" />
+      <mass
+        value="1.02790122650355" />
+      <inertia
+        ixx="0.0222708703975125"
+        ixy="1.05879118406788E-20"
+        ixz="7.30648942347479E-20"
+        iyy="0.0222708703975125"
+        iyz="1.28838771050466E-19"
+        izz="0.000331023775623048" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/rear_shaft.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/rear_shaft.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_shaft_joint"
+    type="continuous">
+    <origin
+      xyz="-0.254678481031125 -0.254000153585616 0.1016"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_shaft" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="rear_right_wheel">
+    <inertial>
+      <origin
+        xyz="-8.79605066561595E-09 3.52349549537223E-09 0.0254000563127965"
+        rpy="0 0 0" />
+      <mass
+        value="0.627305726641921" />
+      <inertia
+        ixx="0.00204148062072574"
+        ixy="1.19734260311977E-09"
+        ixz="-7.48969655149847E-11"
+        iyy="0.00204147729457848"
+        iyz="2.87979816380951E-11"
+        izz="0.00389311509621041" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/rear_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/rear_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="rear_shaft" />
+    <child
+      link="rear_right_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="rear_left_wheel">
+    <inertial>
+      <origin
+        xyz="-9.37474553541762E-09 1.37828781721083E-09 -0.0253999436872031"
+        rpy="0 0 0" />
+      <mass
+        value="0.627305726641925" />
+      <inertia
+        ixx="0.00204147989803352"
+        ixy="1.82074875298365E-09"
+        ixz="-7.95440770898799E-11"
+        iyy="0.00204147801727073"
+        iyz="1.05649829318396E-11"
+        izz="0.00389311509621043" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/rear_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/rear_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_left_wheel_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.508"
+      rpy="0 0 0" />
+    <parent
+      link="rear_shaft" />
+    <child
+      link="rear_left_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="front_right_shaft">
+    <inertial>
+      <origin
+        xyz="-0.0431205113179054 5.17185116954977E-09 0.0239485321305914"
+        rpy="0 0 0" />
+      <mass
+        value="0.535359913631541" />
+      <inertia
+        ixx="0.000836353410948497"
+        ixy="-6.15885540479402E-10"
+        ixz="-0.000555136856499355"
+        iyy="0.00217714694801786"
+        iyz="-5.81341875436344E-10"
+        izz="0.00151373754697996" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_right_shaft.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_right_shaft.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_shaft_joint"
+    type="continuous">
+    <origin
+      xyz="0.253321518968875 -0.101600153585616 0.1016"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_shaft" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="front_right_wheel">
+    <inertial>
+      <origin
+        xyz="-9.41724098701968E-09 3.76971070560339E-05 0.0254000563127964"
+        rpy="0 0 0" />
+      <mass
+        value="0.627305726641923" />
+      <inertia
+        ixx="0.00204147976835884"
+        ixy="1.88207273872621E-09"
+        ixz="-7.98651082560103E-11"
+        iyy="0.00204147814694538"
+        iyz="7.77454306124795E-12"
+        izz="0.00389311509621041" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_wheel_joint"
+    type="fixed">
+    <origin
+      xyz="-0.1524 0 -3.76960577197494E-05"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="front_right_shaft" />
+    <child
+      link="front_right_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="front_left_shaft">
+    <inertial>
+      <origin
+        xyz="0.0431205113179056 -5.17185116954977E-09 0.0239485321305912"
+        rpy="0 0 0" />
+      <mass
+        value="0.53535991363154" />
+      <inertia
+        ixx="0.000836353410948491"
+        ixy="-6.15885539623722E-10"
+        ixz="0.000555136856499352"
+        iyy="0.00217714694801786"
+        iyz="5.81341875066337E-10"
+        izz="0.00151373754697996" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_left_shaft.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_left_shaft.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_shaft_joint"
+    type="continuous">
+    <origin
+      xyz="0.253321518968875 0.101599846414384 0.1016"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_shaft" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="front_left_wheel">
+    <inertial>
+      <origin
+        xyz="-9.41724054293047E-09 3.76971070559229E-05 -0.0253999436872032"
+        rpy="0 0 0" />
+      <mass
+        value="0.627305726641925" />
+      <inertia
+        ixx="0.00204147976835886"
+        ixy="1.88207274048894E-09"
+        ixz="-7.98651083867113E-11"
+        iyy="0.00204147814694539"
+        iyz="7.77454374069249E-12"
+        izz="0.00389311509621043" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/front_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_wheel_joint"
+    type="fixed">
+    <origin
+      xyz="0.1524 0 -3.76960577197494E-05"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="front_left_shaft" />
+    <child
+      link="front_left_wheel" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="manipulator_base">
+    <inertial>
+      <origin
+        xyz="1.20570220474292E-13 4.77395900588817E-14 0.0221577186195164"
+        rpy="0 0 0" />
+      <mass
+        value="0.343652649470195" />
+      <inertia
+        ixx="0.000931840317732508"
+        ixy="-3.93117586115653E-19"
+        ixz="2.41532900673122E-18"
+        iyy="0.000931840317732507"
+        iyz="8.20324158237791E-18"
+        izz="0.00144684523805802" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/manipulator_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/manipulator_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="manipulator_base_joint"
+    type="fixed">
+    <origin
+      xyz="0.354921518968873 -0.00035241085596216 0.2667"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="manipulator_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
     name="link1">
     <inertial>
       <origin
-        xyz="0.000897235611900582 4.44089209850063E-16 0.0579642570946319"
+        xyz="-0.00476743254742651 0 0.0577748363838581"
         rpy="0 0 0" />
       <mass
         value="1.48027865388571" />
       <inertia
-        ixx="0.00299704735585933"
-        ixy="1.14309785614972E-08"
-        ixz="-2.4838847972959E-07"
-        iyy="0.00394347618711751"
-        iyz="-1.76941473918865E-10"
-        izz="0.00298100451963598" />
+        ixx="0.00299692664042462"
+        ixy="-2.23569703188312E-09"
+        ixz="1.3154618503852E-06"
+        iyy="0.00394348618991032"
+        iyz="-1.84484036222152E-10"
+        izz="0.00298109357001247" />
     </inertial>
     <visual>
       <origin
@@ -89,28 +522,28 @@
     type="continuous">
     <origin
       xyz="0 0 0.083058"
-      rpy="0 -0.015478 -2.5461" />
+      rpy="0 0.0823309272452037 1.4401673322326" />
     <parent
-      link="base_link" />
+      link="manipulator_base" />
     <child
       link="link1" />
     <axis
-      xyz="0.015477 0 0.99988" />
+      xyz="-0.082237947023427 0 0.996612723212669" />
   </joint>
   <link
     name="link2">
     <inertial>
       <origin
-        xyz="-4.49640324973188E-15 0.152399999999768 -0.0889000000000084"
+        xyz="-4.69402294811516E-13 0.152399999999151 -0.0889000000000042"
         rpy="0 0 0" />
       <mass
         value="2.62571951129597" />
       <inertia
-        ixx="0.0366190533392521"
-        ixy="1.01392611890011E-13"
+        ixx="0.0366190533392522"
+        ixy="4.47233396150271E-18"
         ixz="-1.73472347597681E-18"
         iyy="0.00343981383550577"
-        iyz="9.49523933872071E-18"
+        iyz="5.57008866114428E-18"
         izz="0.0397646852785769" />
     </inertial>
     <visual>
@@ -141,7 +574,7 @@
     name="link2_joint"
     type="revolute">
     <origin
-      xyz="0.0015332 -0.0889 0.099048"
+      xyz="-0.0081465 -0.0889 0.098724"
       rpy="1.5708 0 0" />
     <parent
       link="link1" />
@@ -150,25 +583,25 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="1.86"
+      upper="-2.18"
+      effort="10"
+      velocity="1000" />
   </joint>
   <link
     name="link3">
     <inertial>
       <origin
-        xyz="0.152246837265913 -0.00139113356119247 -0.088900000000008"
+        xyz="0.148003295006309 -0.0357219733124967 -0.0889000000000043"
         rpy="0 0 0" />
       <mass
         value="2.88590691059082" />
       <inertia
-        ixx="0.00424636631042473"
-        ixy="0.000300952849866704"
-        ixz="-5.55111512312578E-17"
-        iyy="0.0371801516442181"
-        iyz="1.77538105744501E-18"
+        ixx="0.00605684364244081"
+        ixy="0.00751256389339986"
+        ixz="-2.22261445359528E-17"
+        iyy="0.035369674312202"
+        iyz="2.81892564846231E-18"
         izz="0.0402180502620228" />
     </inertial>
     <visual>
@@ -208,26 +641,26 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="3.14"
+      upper="-0.14"
+      effort="10"
+      velocity="1000" />
   </joint>
   <link
     name="link4">
     <inertial>
       <origin
-        xyz="0.0408951398772175 -0.00398445431727379 -0.0889000028681004"
+        xyz="0.0410887868371235 2.8121622031696E-05 -0.0888999860575093"
         rpy="0 0 0" />
       <mass
-        value="1.48027818375282" />
+        value="1.48027855179196" />
       <inertia
-        ixx="0.00298113893980984"
-        ixy="1.55088616182411E-06"
-        ixz="-4.65584122926084E-09"
-        iyy="0.0029968855341903"
-        iyz="-4.9518818254101E-09"
-        izz="0.00394348370362463" />
+        ixx="0.00298098362629461"
+        ixy="-1.09936009905687E-08"
+        ixz="8.33647750494732E-10"
+        iyy="0.0029970335065252"
+        iyz="2.33216838036414E-09"
+        izz="0.00394348692572763" />
     </inertial>
     <visual>
       <origin
@@ -257,7 +690,7 @@
     name="link4_joint"
     type="revolute">
     <origin
-      xyz="0.30479 -0.0027849 0"
+      xyz="0.29629 -0.071513 0"
       rpy="0 0 0" />
     <parent
       link="link3" />
@@ -266,26 +699,26 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="2.35"
+      upper="-1.77"
+      effort="10"
+      velocity="1000" />
   </joint>
   <link
-    name="gripper_rotor">
+    name="gripper">
     <inertial>
       <origin
-        xyz="-0.00737949120477044 1.17382328079785E-07 0.0761223086199434"
+        xyz="-0.00381509857258 0.0733141735781111 -2.73245616080331E-05"
         rpy="0 0 0" />
       <mass
-        value="0.318053361750219" />
+        value="0.318053344407251" />
       <inertia
-        ixx="0.00117139902653459"
-        ixy="3.58049489127139E-08"
-        ixz="-5.51995479008395E-08"
-        iyy="0.00116002128237795"
-        iyz="7.14741875493946E-10"
-        izz="0.00116291945448061" />
+        ixx="0.00117130768739902"
+        ixy="8.77342735524937E-07"
+        ixz="-3.30840192944662E-10"
+        iyy="0.00116301084919414"
+        iyz="-1.13226117227878E-09"
+        izz="0.0011600211189812" />
     </inertial>
     <visual>
       <origin
@@ -293,7 +726,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://manipulator/meshes/gripper_rotor.STL" />
+          filename="package://manipulator/meshes/gripper.STL" />
       </geometry>
       <material
         name="">
@@ -307,96 +740,38 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://manipulator/meshes/gripper_rotor.STL" />
+          filename="package://manipulator/meshes/gripper.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="gripper_rotor_joint"
+    name="gripper_joint"
     type="continuous">
     <origin
-      xyz="0.098593 -0.009606 -0.0889"
-      rpy="1.5708 0 1.5708" />
+      xyz="0.248853265309693 0.00336707133293568 -0.0909728912537893"
+      rpy="0 0.575281631239788 1.5707963267949" />
     <parent
       link="link4" />
     <child
-      link="gripper_rotor" />
+      link="gripper" />
     <axis
-      xyz="-0.096972 0 0.99529" />
-  </joint>
-  <link
-    name="gripper_right">
-    <inertial>
-      <origin
-        xyz="0.0252710360840156 0.113924064554785 -0.00634999999998698"
-        rpy="0 0 0" />
-      <mass
-        value="0.0811562982935573" />
-      <inertia
-        ixx="0.000421572974034788"
-        ixy="-5.04736718057817E-05"
-        ixz="8.470329472543E-21"
-        iyy="1.6437351101167E-05"
-        iyz="1.1138483256394E-19"
-        izz="0.000435828708577327" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://manipulator/meshes/gripper_right.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://manipulator/meshes/gripper_right.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="gripper_right_joint"
-    type="revolute">
-    <origin
-      xyz="0.0017603 0.020915 0.15151"
-      rpy="1.4737 0.00030682 1.5739" />
-    <parent
-      link="gripper_rotor" />
-    <child
-      link="gripper_right" />
-    <axis
-      xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      xyz="0.0005742505150447 -0.999999765788382 0.000372370147822085" />
   </joint>
   <link
     name="gripper_left">
     <inertial>
       <origin
-        xyz="0.0272545106738611 -0.113465895303775 -0.0063500000000003"
+        xyz="0.0394810399510597 -0.109811498641309 -0.00634999999984642"
         rpy="0 0 0" />
       <mass
-        value="0.0811562982935575" />
+        value="0.0811562982935577" />
       <inertia
-        ixx="0.000419689007732419"
-        ixy="5.75091651654448E-05"
-        ixz="-5.0821976835258E-21"
-        iyy="1.83213174035382E-05"
-        iyz="-3.47283508374263E-20"
-        izz="0.000435828708577329" />
+        ixx="0.000402419693683614"
+        ixy="9.97016527628495E-05"
+        ixz="-1.35525271560688E-20"
+        iyy="3.5590631452345E-05"
+        iyz="-1.56701095242046E-19"
+        izz="0.000435828708577331" />
     </inertial>
     <visual>
       <origin
@@ -426,18 +801,76 @@
     name="gripper_left_joint"
     type="revolute">
     <origin
-      xyz="0.0018917 -0.02081 0.15152"
-      rpy="-1.4737 -0.00030682 -1.5676" />
+      xyz="0.0127004769785455 -0.000826963988762031 -0.0208624359755367"
+      rpy="-1.57079632680667 1.57042395663749 -1.57022207621871" />
     <parent
-      link="gripper_rotor" />
+      link="gripper" />
     <child
       link="gripper_left" />
     <axis
       xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      <limit
+      lower="0.45"
+      upper="-1.15"
+      effort="10"
+      velocity="1000" />
+  </joint>
+  <link
+    name="gripper_right">
+    <inertial>
+      <origin
+        xyz="0.11399724572148 0.0249388395349214 -0.0063499999999107"
+        rpy="0 0 0" />
+      <mass
+        value="0.0811562982935572" />
+      <inertia
+        ixx="4.94791777175608E-05"
+        ixy="-0.000121828774304379"
+        ixz="2.10868852218958E-18"
+        iyy="0.000388531147418396"
+        iyz="6.03087458445062E-19"
+        izz="0.000435828708577328" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/gripper_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://manipulator/meshes/gripper_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="gripper_right_joint"
+    type="revolute">
+    <origin
+      xyz="0.012700468056301 -0.00081142668143086 0.0208630053929066"
+      rpy="1.57079632680667 -1.57042395663749 1.57137057737108" />
+    <parent
+      link="gripper" />
+    <child
+      link="gripper_right" />
+    <axis
+      xyz="0 0 -1" />
+      <limit
+      lower="0.15"
+      upper="-1.39"
+      effort="10"
+      velocity="1000" />
   </joint>
 </robot>

@@ -1,1 +1,1 @@
-controller_joint_names: ['', 'link1_joint', 'link2_joint', 'link3_joint', 'link4_joint', 'gripper_rotor_joint', 'gripper_right_joint', 'gripper_left_joint', ]
+controller_joint_names: ['', 'rear_shaft_joint', 'rear_right_wheel_joint', 'rear_left_wheel_joint', 'front_right_sahft_joint', 'front_left_shaft_joint', 'link1_joint', 'link2_joint', 'link3_joint', 'link4_joint', 'gripper_joint', 'gripper_left_joint', 'gripper_right_joint', ]
