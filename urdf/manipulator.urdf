@@ -873,4 +873,38 @@
       effort="10"
       velocity="1000" />
   </joint>
+
+  <transmission name="trans_front_left_shaft_joint">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="front_left_shaft_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_left_shaft_joint">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </actuator>
+  </transmission>
+
+  <transmission name="trans_front_right_shaft_joint">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="front_right_shaft_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_right_shaft_joint">
+  <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </actuator>
+  </transmission>
+  
+  <transmission name="trans_rear_shaft_joint">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="rear_shaft_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_rear_shaft_joint">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </actuator>
+  </transmission>
+
 </robot>
